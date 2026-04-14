@@ -221,119 +221,134 @@
             </div>
             
             <!-- Horizontal scrolling menu cards -->
-            <div class="horizontal-scroll pb-6">
-                <!-- Coffee Card -->
-                <div class="w-[320px] md:w-[380px] bg-sand border border-moon-200 rounded-[2rem] p-6 hover-float shadow-sm">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-night-600 rounded-full flex items-center justify-center text-xl">☕</div>
-                        <h3 class="font-serif font-bold text-2xl text-moon-800">Specialty Coffee</h3>
-                    </div>
-                    <div class="space-y-3 text-moon-600">
-                        <div class="flex justify-between border-b border-moon-200 pb-2">
-                            <span>Espresso</span>
-                            <span class="font-semibold">3,00</span>
-                        </div>
-                        <div class="flex justify-between border-b border-moon-200 pb-2">
-                            <span>Cappuccino <span class="text-xs text-terracotta">★ Latte Art</span></span>
-                            <span class="font-semibold">3,80</span>
-                        </div>
-                        <div class="flex justify-between border-b border-moon-200 pb-2">
-                            <span>Flat White</span>
-                            <span class="font-semibold">4,20</span>
-                        </div>
-                        <div class="flex justify-between border-b border-moon-200 pb-2">
-                            <span>Filter Coffee</span>
-                            <span class="font-semibold">3,50</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Iced Latte</span>
-                            <span class="font-semibold">4,50</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="relative">
+                <!-- Left arrow -->
+                <button id="menuScrollLeft" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-night-600 text-sand rounded-full shadow-lg flex items-center justify-center hover:bg-night-700 transition-all hover:scale-110 focus:outline-none -ml-2 md:-ml-6" aria-label="Défiler à gauche">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <!-- Right arrow -->
+                <button id="menuScrollRight" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-night-600 text-sand rounded-full shadow-lg flex items-center justify-center hover:bg-night-700 transition-all hover:scale-110 focus:outline-none -mr-2 md:-mr-6" aria-label="Défiler à droite">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
                 
-                <!-- Brunch Card -->
-                <div class="w-[320px] md:w-[380px] bg-moon-800 text-sand rounded-[2rem] p-6 hover-float shadow-lg">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-terracotta rounded-full flex items-center justify-center text-xl">🍳</div>
-                        <h3 class="font-serif font-bold text-2xl">Brunch</h3>
-                    </div>
-                    <div class="space-y-3 text-sand/80">
-                        <div class="flex justify-between border-b border-sand/20 pb-2">
-                            <span>Scrambled Eggs & Challah</span>
-                            <span class="font-semibold">12,50</span>
+                <div class="horizontal-scroll pb-6 px-2" id="menuScroll">
+                    <!-- Coffee Card -->
+                    <div class="w-[320px] md:w-[380px] bg-sand border border-moon-200 rounded-[2rem] p-6 hover-float shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-night-600 rounded-full flex items-center justify-center text-xl">☕</div>
+                            <h3 class="font-serif font-bold text-2xl text-moon-800">Specialty Coffee</h3>
                         </div>
-                        <div class="flex justify-between border-b border-sand/20 pb-2">
-                            <span>Avocado Toast <span class="text-xs text-terracotta">★ Best-seller</span></span>
-                            <span class="font-semibold">13,00</span>
-                        </div>
-                        <div class="flex justify-between border-b border-sand/20 pb-2">
-                            <span>Bagel & Smoked Salmon</span>
-                            <span class="font-semibold">14,50</span>
-                        </div>
-                        <div class="flex justify-between border-b border-sand/20 pb-2">
-                            <span>Breakfast Burrito</span>
-                            <span class="font-semibold">13,50</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Pancakes & Maple Syrup</span>
-                            <span class="font-semibold">11,50</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Sweet Card -->
-                <div class="w-[320px] md:w-[380px] bg-terracotta/10 border border-terracotta/30 rounded-[2rem] p-6 hover-float shadow-sm">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-terracotta text-sand rounded-full flex items-center justify-center text-xl">🍰</div>
-                        <h3 class="font-serif font-bold text-2xl text-moon-800">Sweet Things</h3>
-                    </div>
-                    <div class="space-y-3 text-moon-600">
-                        <div class="flex justify-between border-b border-terracotta/20 pb-2">
-                            <span>Homemade Babka <span class="text-xs text-terracotta">★ Vegan option</span></span>
-                            <span class="font-semibold">4,50</span>
-                        </div>
-                        <div class="flex justify-between border-b border-terracotta/20 pb-2">
-                            <span>French Toast & Berries</span>
-                            <span class="font-semibold">11,00</span>
-                        </div>
-                        <div class="flex justify-between border-b border-terracotta/20 pb-2">
-                            <span>Granola Bowl</span>
-                            <span class="font-semibold">9,50</span>
-                        </div>
-                        <div class="flex justify-between border-b border-terracotta/20 pb-2">
-                            <span>Cookie of the Day</span>
-                            <span class="font-semibold">3,50</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Carrot Cake</span>
-                            <span class="font-semibold">5,00</span>
+                        <div class="space-y-3 text-moon-600">
+                            <div class="flex justify-between border-b border-moon-200 pb-2">
+                                <span>Espresso</span>
+                                <span class="font-semibold">3,00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-moon-200 pb-2">
+                                <span>Cappuccino <span class="text-xs text-terracotta">★ Latte Art</span></span>
+                                <span class="font-semibold">3,80</span>
+                            </div>
+                            <div class="flex justify-between border-b border-moon-200 pb-2">
+                                <span>Flat White</span>
+                                <span class="font-semibold">4,20</span>
+                            </div>
+                            <div class="flex justify-between border-b border-moon-200 pb-2">
+                                <span>Filter Coffee</span>
+                                <span class="font-semibold">3,50</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Iced Latte</span>
+                                <span class="font-semibold">4,50</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Lunch Card -->
-                <div class="w-[320px] md:w-[380px] bg-white border border-moon-200 rounded-[2rem] p-6 hover-float shadow-sm">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-moon-400 text-sand rounded-full flex items-center justify-center text-xl">🥗</div>
-                        <h3 class="font-serif font-bold text-2xl text-moon-800">Lunch</h3>
+                    
+                    <!-- Brunch Card -->
+                    <div class="w-[320px] md:w-[380px] bg-moon-800 text-sand rounded-[2rem] p-6 hover-float shadow-lg">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-terracotta rounded-full flex items-center justify-center text-xl">🍳</div>
+                            <h3 class="font-serif font-bold text-2xl">Brunch</h3>
+                        </div>
+                        <div class="space-y-3 text-sand/80">
+                            <div class="flex justify-between border-b border-sand/20 pb-2">
+                                <span>Scrambled Eggs & Challah</span>
+                                <span class="font-semibold">12,50</span>
+                            </div>
+                            <div class="flex justify-between border-b border-sand/20 pb-2">
+                                <span>Avocado Toast <span class="text-xs text-terracotta">★ Best-seller</span></span>
+                                <span class="font-semibold">13,00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-sand/20 pb-2">
+                                <span>Bagel & Smoked Salmon</span>
+                                <span class="font-semibold">14,50</span>
+                            </div>
+                            <div class="flex justify-between border-b border-sand/20 pb-2">
+                                <span>Breakfast Burrito</span>
+                                <span class="font-semibold">13,50</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Pancakes & Maple Syrup</span>
+                                <span class="font-semibold">11,50</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="space-y-3 text-moon-600">
-                        <div class="flex justify-between border-b border-moon-200 pb-2">
-                            <span>Soup of the Day & Bread</span>
-                            <span class="font-semibold">8,50</span>
+                    
+                    <!-- Sweet Card -->
+                    <div class="w-[320px] md:w-[380px] bg-terracotta/10 border border-terracotta/30 rounded-[2rem] p-6 hover-float shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-terracotta text-sand rounded-full flex items-center justify-center text-xl">🍰</div>
+                            <h3 class="font-serif font-bold text-2xl text-moon-800">Sweet Things</h3>
                         </div>
-                        <div class="flex justify-between border-b border-moon-200 pb-2">
-                            <span>Caesar Salad</span>
-                            <span class="font-semibold">13,50</span>
+                        <div class="space-y-3 text-moon-600">
+                            <div class="flex justify-between border-b border-terracotta/20 pb-2">
+                                <span>Homemade Babka <span class="text-xs text-terracotta">★ Vegan option</span></span>
+                                <span class="font-semibold">4,50</span>
+                            </div>
+                            <div class="flex justify-between border-b border-terracotta/20 pb-2">
+                                <span>French Toast & Berries</span>
+                                <span class="font-semibold">11,00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-terracotta/20 pb-2">
+                                <span>Granola Bowl</span>
+                                <span class="font-semibold">9,50</span>
+                            </div>
+                            <div class="flex justify-between border-b border-terracotta/20 pb-2">
+                                <span>Cookie of the Day</span>
+                                <span class="font-semibold">3,50</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Carrot Cake</span>
+                                <span class="font-semibold">5,00</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between border-b border-moon-200 pb-2">
-                            <span>Croque Monsieur</span>
-                            <span class="font-semibold">12,00</span>
+                    </div>
+                    
+                    <!-- Lunch Card -->
+                    <div class="w-[320px] md:w-[380px] bg-white border border-moon-200 rounded-[2rem] p-6 hover-float shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 bg-moon-400 text-sand rounded-full flex items-center justify-center text-xl">🥗</div>
+                            <h3 class="font-serif font-bold text-2xl text-moon-800">Lunch</h3>
                         </div>
-                        <div class="flex justify-between">
-                            <span>Sandwich of the Day</span>
-                            <span class="font-semibold">11,50</span>
+                        <div class="space-y-3 text-moon-600">
+                            <div class="flex justify-between border-b border-moon-200 pb-2">
+                                <span>Soup of the Day & Bread</span>
+                                <span class="font-semibold">8,50</span>
+                            </div>
+                            <div class="flex justify-between border-b border-moon-200 pb-2">
+                                <span>Caesar Salad</span>
+                                <span class="font-semibold">13,50</span>
+                            </div>
+                            <div class="flex justify-between border-b border-moon-200 pb-2">
+                                <span>Croque Monsieur</span>
+                                <span class="font-semibold">12,00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Sandwich of the Day</span>
+                                <span class="font-semibold">11,50</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -467,6 +482,21 @@
         }, { threshold: 0.1 });
         
         document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+        
+        // Menu horizontal scroll controls & wheel conversion
+        const menuScroll = document.getElementById('menuScroll');
+        document.getElementById('menuScrollLeft').addEventListener('click', () => {
+            menuScroll.scrollBy({ left: -360, behavior: 'smooth' });
+        });
+        document.getElementById('menuScrollRight').addEventListener('click', () => {
+            menuScroll.scrollBy({ left: 360, behavior: 'smooth' });
+        });
+        menuScroll.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                e.preventDefault();
+                menuScroll.scrollBy({ left: e.deltaY, behavior: 'smooth' });
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>
