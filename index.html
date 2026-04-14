@@ -3,95 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moka Moon | Coffee shop de quartier & brunch californien</title>
-    <meta name="description" content="Moka Moon - Coffee shop de quartier & brunch californien. Chaussée d'Alsemberg 358, 1190 Forest. Réservation et menu en ligne.">
+    <title>Moka Moon | California Brunch & Specialty Coffee — Forest</title>
+    <meta name="description" content="Moka Moon — Coffee shop de quartier à Forest. California style brunch all day, specialty coffee by Wide Awake, homemade dishes. Chaussée d'Alsemberg 358.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Libre Baskerville', 'serif'],
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        moon: {
+                            50: '#F5F0E8',
+                            100: '#E8E0D4',
+                            200: '#D4C8B8',
+                            300: '#B8A894',
+                            400: '#9C8874',
+                            500: '#806C5C',
+                            600: '#6B4423',
+                            700: '#4A3020',
+                            800: '#2D1F18',
+                            900: '#1A1210',
+                        },
+                        night: {
+                            400: '#4A5D6E',
+                            500: '#3D4F5F',
+                            600: '#2D3A4A',
+                            700: '#1E2832',
+                            800: '#141C24',
+                            900: '#0C1116',
+                        },
+                        terracotta: '#C17767',
+                        sand: '#F5F0E8',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .hero-bg { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; }
-        .brand-bg { background-color: #7C3AED; }
-        .brand-text { color: #7C3AED; }
-        .brand-border { border-color: #7C3AED; }
-        .brand-hover:hover { background-color: #4C1D95; }
+        body {
+            background-color: #F5F0E8;
+            color: #1A1210;
+        }
+        
+        .moon-mask {
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+        
+        .moon-mask-2 {
+            border-radius: 40% 60% 60% 40% / 50% 50% 50% 50%;
+        }
+        
+        .paper-texture {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+        
+        .horizontal-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 1rem;
+        }
+        
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .horizontal-scroll > * {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+        
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hover-float {
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .hover-float:hover {
+            transform: translateY(-12px) rotate(1deg);
+        }
+        
+        .text-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        
+        .star-badge {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800">
-    <!-- Navbar -->
-    <nav class="bg-white/95 backdrop-blur shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold brand-text" style="font-family: 'Playfair Display', serif;">Moka Moon</a>
-            <div class="hidden md:flex gap-6 text-sm font-medium">
-                <a href="#about" class="hover:text-stone-500 transition">À propos</a>
-                <a href="#specialties" class="hover:text-stone-500 transition">Spécialités</a>
-                <a href="#contact" class="hover:text-stone-500 transition">Contact</a>
+<body class="antialiased paper-texture">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-sand/80 backdrop-blur-md rounded-full px-6 py-3 border border-moon-200">
+            <a href="#" class="font-serif font-bold text-xl text-moon-800 tracking-tight">Moka Moon</a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="text-moon-700 hover:text-terracotta transition-colors">Notre café</a>
+                <a href="#menu" class="text-moon-700 hover:text-terracotta transition-colors">Menu</a>
+                <a href="#coffee" class="text-moon-700 hover:text-terracotta transition-colors">Wide Awake</a>
+                <a href="#contact" class="bg-night-600 text-sand px-5 py-2 rounded-full hover:bg-night-700 transition-colors">Réserver</a>
             </div>
-            <a href="tel:+3224144666" class="brand-bg text-white px-5 py-2 rounded-full text-sm font-semibold brand-hover transition shadow-md">Réserver pour le brunch</a>
+            <a href="#contact" class="md:hidden bg-night-600 text-sand px-4 py-2 rounded-full text-sm font-medium">Réserver</a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <header class="hero-bg h-[70vh] flex items-center justify-center text-center px-4">
-        <div class="max-w-3xl text-white">
-            <p class="text-sm md:text-base tracking-widest uppercase mb-4 opacity-90">1190 Forest, Bruxelles</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Moka Moon</h1>
-            <p class="text-xl md:text-2xl font-light mb-8 opacity-95">Coffee shop de quartier & brunch californien</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+3224144666" class="brand-bg text-white px-8 py-3 rounded-full font-semibold text-lg brand-hover transition shadow-lg">Réserver pour le brunch</a>
-                <a href="tel:+32 2 414 46 66" class="bg-white/20 backdrop-blur text-white border border-white/40 px-8 py-3 rounded-full font-semibold text-lg hover:bg-white/30 transition">+32 2 414 46 66</a>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-28 pb-16 px-6 relative overflow-hidden">
+        <!-- Decorative moon shapes -->
+        <div class="absolute top-20 right-[-10%] w-[500px] h-[500px] bg-night-600/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-terracotta/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-8 items-center relative z-10">
+            <!-- Left vertical text -->
+            <div class="hidden lg:flex lg:col-span-1 justify-center">
+                <span class="text-vertical font-sans font-medium text-xs tracking-[0.3em] text-moon-400 uppercase">Chaussée d'Alsemberg 358</span>
             </div>
-        </div>
-    </header>
-
-    <!-- About -->
-    <section id="about" class="py-20 px-4 max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 brand-text">Notre histoire</h2>
-        <p class="text-lg md:text-xl text-stone-600 leading-relaxed">Moka Moon est un coffee shop dédié au partage, à une nourriture saine et à un café de spécialité fraîchement torréfié. Inspiré par la culture brunch californienne, nous proposons un menu riche en options saines et copieuses, dans un cadre chaleureux décoré de céramiques locales.</p>
-    </section>
-
-    <!-- Specialties -->
-    <section id="specialties" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center brand-text">Nos spécialités</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-stone-50 p-6 rounded-2xl border-l-4 brand-border hover:shadow-md transition"><h3 class="text-xl font-bold mb-2 brand-text">Brunch californien</h3></div>
-<div class="bg-stone-50 p-6 rounded-2xl border-l-4 brand-border hover:shadow-md transition"><h3 class="text-xl font-bold mb-2 brand-text">Café de spécialité</h3></div>
-<div class="bg-stone-50 p-6 rounded-2xl border-l-4 brand-border hover:shadow-md transition"><h3 class="text-xl font-bold mb-2 brand-text">Smoothies & jus frais</h3></div>
-<div class="bg-stone-50 p-6 rounded-2xl border-l-4 brand-border hover:shadow-md transition"><h3 class="text-xl font-bold mb-2 brand-text">Ateliers mensuels</h3></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact / Info -->
-    <section id="contact" class="py-20 bg-stone-100">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-10 brand-text">Infos pratiques</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <div class="text-3xl mb-3">📍</div>
-                    <h3 class="font-semibold mb-2">Adresse</h3>
-                    <p class="text-stone-600">Chaussée d'Alsemberg 358, 1190 Forest</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <div class="text-3xl mb-3">🕒</div>
-                    <h3 class="font-semibold mb-2">Horaires</h3>
-                    <p class="text-stone-600">Mar-Dim: 9h00-15h00 (brunch)</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm">
-                    <div class="text-3xl mb-3">📞</div>
-                    <h3 class="font-semibold mb-2">Téléphone</h3>
-                    <p class="text-stone-600"><a href="tel:+32 2 414 46 66" class="brand-text hover:underline">+32 2 414 46 66</a></p>
+            
+            <!-- Center content -->
+            <div class="lg:col-span-5 order-2 lg:order-1">
+                <p class="font-sans font-medium text-sm tracking-widest uppercase text-terracotta mb-4">Forest, 1190 Bruxelles</p>
+                <h1 class="font-serif font-bold text-5xl md:text-7xl text-moon-800 leading-[1.05] mb-6">
+                    Your<br>neighbourhood<br><span class="italic text-night-600">café.</span>
+                </h1>
+                <p class="text-lg text-moon-600 max-w-md mb-8 leading-relaxed">
+                    California style brunch all day. Specialty coffee freshly roasted by <strong>Wide Awake</strong> right here in Brussels. Homemade, wholesome & made for sharing.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#menu" class="bg-night-600 text-sand px-8 py-4 rounded-full font-sans font-semibold hover:bg-night-700 transition-all hover:scale-105 shadow-lg">
+                        Voir le menu
+                    </a>
+                    <a href="tel:+3224144666" class="border-2 border-moon-400 text-moon-700 px-8 py-4 rounded-full font-sans font-semibold hover:border-night-600 hover:text-night-600 transition-all">
+                        02 414 46 66
+                    </a>
                 </div>
             </div>
-            <a href="tel:+3224144666" class="inline-block brand-bg text-white px-10 py-4 rounded-full font-semibold text-lg brand-hover transition shadow-lg">Réserver pour le brunch</a>
+            
+            <!-- Right images composition -->
+            <div class="lg:col-span-6 order-1 lg:order-2 relative h-[500px] md:h-[600px]">
+                <div class="absolute top-0 right-0 w-[70%] h-[70%] moon-mask overflow-hidden shadow-2xl hover-float">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" 
+                         alt="Ambiance coffee shop Moka Moon" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div class="absolute bottom-0 left-0 w-[55%] h-[55%] moon-mask-2 overflow-hidden shadow-2xl border-4 border-sand hover-float" style="transition-delay: 0.1s">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" 
+                         alt="Cappuccino latte art Moka Moon" 
+                         class="w-full h-full object-cover">
+                </div>
+                <div class="absolute top-[20%] left-[10%] w-20 h-20 bg-terracotta rounded-full flex items-center justify-center text-sand font-sans font-bold text-xs text-center leading-tight shadow-xl rotate-12 hover:rotate-0 transition-transform duration-500">
+                    OPEN<br>7/7
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-stone-400 py-8 text-center text-sm">
-        <p>&copy; 2026 Moka Moon. Tous droits réservés.</p>
-        <p class="mt-2">1190 Forest, Bruxelles, Belgique</p>
-    </footer>
+    <!-- About / Mission -->
+    <section id="about" class="py-24 px-6 bg-night-600 text-sand relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <circle cx="80" cy="20" r="30" fill="currentColor"/>
+                <circle cx="20" cy="80" r="20" fill="currentColor"/>
+            </svg>
+        </div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h2 class="font-serif font-bold text-4xl md:text-6xl mb-8 leading-tight">
+                Moka Moon is about<br><span class="italic text-moon-200">sharing,</span> wholesome food<br>& freshly roasted speciality coffee.
+            </h2>
+            <p class="text-xl md:text-2xl text-sand/80 max-w-3xl mx-auto leading-relaxed mb-12">
+                We want this space to be yours. A place to meet, work, relax, and savour every moment. Every dish is homemade with love, every coffee tells a story.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="bg-sand/10 backdrop-blur px-6 py-4 rounded-2xl border border-sand/20">
+                    <span class="block font-serif font-bold text-2xl">2022</span>
+                    <span class="text-sm text-sand/60">Ouverture</span>
+                </div>
+                <div class="bg-sand/10 backdrop-blur px-6 py-4 rounded-2xl border border-sand/20">
+                    <span class="block font-serif font-bold text-2xl">Wide Awake</span>
+                    <span class="text-sm text-sand/60">Coffee Roasters</span>
+                </div>
+                <div class="bg-sand/10 backdrop-blur px-6 py-4 rounded-2xl border border-sand/20">
+                    <span class="block font-serif font-bold text-2xl">All Day</span>
+                    <span class="text-sm text-sand/60">California Brunch</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-4">
+                <div>
+                    <span class="font-sans font-medium text-sm tracking-widest uppercase text-terracotta">Notre carte</span>
+                    <h2 class="font-serif font-bold text-5xl md:text-6xl text-moon-800 mt-2">California Brunch</h2>
+                </div>
+                <p class="text-moon-500 max-w-sm">Served all day. Prepared with seasonal, local ingredients whenever possible.</p>
+            </div>
+            
+            <!-- Horizontal scrolling menu cards -->
+            <div class="horizontal-scroll pb-6">
+                <!-- Coffee Card -->
+                <div class="w-[320px] md:w-[380px] bg-sand border border-moon-200 rounded-[2rem] p-6 hover-float shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-night-600 rounded-full flex items-center justify-center text-xl">☕</div>
+                        <h3 class="font-serif font-bold text-2xl text-moon-800">Specialty Coffee</h3>
+                    </div>
+                    <div class="space-y-3 text-moon-600">
+                        <div class="flex justify-between border-b border-moon-200 pb-2">
+                            <span>Espresso</span>
+                            <span class="font-semibold">3,00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-moon-200 pb-2">
+                            <span>Cappuccino <span class="text-xs text-terracotta">★ Latte Art</span></span>
+                            <span class="font-semibold">3,80</span>
+                        </div>
+                        <div class="flex justify-between border-b border-moon-200 pb-2">
+                            <span>Flat White</span>
+                            <span class="font-semibold">4,20</span>
+                        </div>
+                        <div class="flex justify-between border-b border-moon-200 pb-2">
+                            <span>Filter Coffee</span>
+                            <span class="font-semibold">3,50</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Iced Latte</span>
+                            <span class="font-semibold">4,50</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Brunch Card -->
+                <div class="w-[320px] md:w-[380px] bg-moon-800 text-sand rounded-[2rem] p-6 hover-float shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-terracotta rounded-full flex items-center justify-center text-xl">🍳</div>
+                        <h3 class="font-serif font-bold text-2xl">Brunch</h3>
+                    </div>
+                    <div class="space-y-3 text-sand/80">
+                        <div class="flex justify-between border-b border-sand/20 pb-2">
+                            <span>Scrambled Eggs & Challah</span>
+                            <span class="font-semibold">12,50</span>
+                        </div>
+                        <div class="flex justify-between border-b border-sand/20 pb-2">
+                            <span>Avocado Toast <span class="text-xs text-terracotta">★ Best-seller</span></span>
+                            <span class="font-semibold">13,00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-sand/20 pb-2">
+                            <span>Bagel & Smoked Salmon</span>
+                            <span class="font-semibold">14,50</span>
+                        </div>
+                        <div class="flex justify-between border-b border-sand/20 pb-2">
+                            <span>Breakfast Burrito</span>
+                            <span class="font-semibold">13,50</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Pancakes & Maple Syrup</span>
+                            <span class="font-semibold">11,50</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sweet Card -->
+                <div class="w-[320px] md:w-[380px] bg-terracotta/10 border border-terracotta/30 rounded-[2rem] p-6 hover-float shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-terracotta text-sand rounded-full flex items-center justify-center text-xl">🍰</div>
+                        <h3 class="font-serif font-bold text-2xl text-moon-800">Sweet Things</h3>
+                    </div>
+                    <div class="space-y-3 text-moon-600">
+                        <div class="flex justify-between border-b border-terracotta/20 pb-2">
+                            <span>Homemade Babka <span class="text-xs text-terracotta">★ Vegan option</span></span>
+                            <span class="font-semibold">4,50</span>
+                        </div>
+                        <div class="flex justify-between border-b border-terracotta/20 pb-2">
+                            <span>French Toast & Berries</span>
+                            <span class="font-semibold">11,00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-terracotta/20 pb-2">
+                            <span>Granola Bowl</span>
+                            <span class="font-semibold">9,50</span>
+                        </div>
+                        <div class="flex justify-between border-b border-terracotta/20 pb-2">
+                            <span>Cookie of the Day</span>
+                            <span class="font-semibold">3,50</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Carrot Cake</span>
+                            <span class="font-semibold">5,00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lunch Card -->
+                <div class="w-[320px] md:w-[380px] bg-white border border-moon-200 rounded-[2rem] p-6 hover-float shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-moon-400 text-sand rounded-full flex items-center justify-center text-xl">🥗</div>
+                        <h3 class="font-serif font-bold text-2xl text-moon-800">Lunch</h3>
+                    </div>
+                    <div class="space-y-3 text-moon-600">
+                        <div class="flex justify-between border-b border-moon-200 pb-2">
+                            <span>Soup of the Day & Bread</span>
+                            <span class="font-semibold">8,50</span>
+                        </div>
+                        <div class="flex justify-between border-b border-moon-200 pb-2">
+                            <span>Caesar Salad</span>
+                            <span class="font-semibold">13,50</span>
+                        </div>
+                        <div class="flex justify-between border-b border-moon-200 pb-2">
+                            <span>Croque Monsieur</span>
+                            <span class="font-semibold">12,00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Sandwich of the Day</span>
+                            <span class="font-semibold">11,50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-moon-500 text-sm">Prices may vary. Vegan & gluten-free options available — just ask our team!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wide Awake Coffee Section -->
+    <section id="coffee" class="py-24 px-6 bg-moon-100 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1000&q=80" 
+                             alt="Wide Awake Coffee Roasters Brussels" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-night-600 text-sand px-8 py-4 rounded-2xl font-serif font-bold text-xl shadow-xl rotate-3">
+                        Roasted in BXL
+                    </div>
+                </div>
+                <div>
+                    <span class="font-sans font-medium text-sm tracking-widest uppercase text-terracotta">Our coffee</span>
+                    <h2 class="font-serif font-bold text-4xl md:text-5xl text-moon-800 mt-3 mb-6">
+                        Wide Awake<br>Specialty Coffee
+                    </h2>
+                    <p class="text-lg text-moon-600 leading-relaxed mb-6">
+                        Our specialty coffee is provided by <strong>Wide Awake</strong> and is roasted right here in Brussels. We carefully select beans that tell a story — from the dedicated farmer to your cup.
+                    </p>
+                    <p class="text-lg text-moon-600 leading-relaxed mb-8">
+                        Every cappuccino is crafted with care (and sometimes a little artistic touch). Whether you're here for a quick espresso or a slow pour-over, we promise a memorable coffee experience.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="bg-sand px-4 py-2 rounded-full text-moon-700 font-medium text-sm">Single Origin</span>
+                        <span class="bg-sand px-4 py-2 rounded-full text-moon-700 font-medium text-sm">Seasonal Blends</span>
+                        <span class="bg-sand px-4 py-2 rounded-full text-moon-700 font-medium text-sm">Plant Milks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery / Vibe Section -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif font-bold text-4xl md:text-5xl text-moon-800 mb-4">The Vibe</h2>
+                <p class="text-moon-500 text-lg">Cozy atmosphere, friendly staff, and space for everyone.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-[3/4] rounded-2xl overflow-hidden hover-float">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Coffee shop interior" class="w-full h-full object-cover">
+                </div>
+                <div class="aspect-[3/4] rounded-2xl overflow-hidden hover-float mt-8">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Latte art coffee" class="w-full h-full object-cover">
+                </div>
+                <div class="aspect-[3/4] rounded-2xl overflow-hidden hover-float">
+                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=600&q=80" alt="Brunch plate" class="w-full h-full object-cover">
+                </div>
+                <div class="aspect-[3/4] rounded-2xl overflow-hidden hover-float mt-8">
+                    <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=600&q=80" alt="Cozy corner" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <section id="contact" class="py-24 px-6 bg-night-600 text-sand">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="font-serif font-bold text-5xl md:text-6xl mb-6">
+                        Come say<br><span class="italic text-moon-200">hello.</span>
+                    </h2>
+                    <p class="text-sand/70 text-lg mb-8 max-w-md">
+                        Open Tuesday — Sunday. Closed on Mondays. Outdoor seating available when the sun's out.
+                    </p>
+                    <a href="tel:+3224144666" class="inline-block bg-terracotta text-sand px-10 py-5 rounded-full font-sans font-semibold text-lg hover:bg-[#A85D4D] transition-colors shadow-lg">
+                        Book a table — 02 414 46 66
+                    </a>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="bg-sand/10 p-6 rounded-2xl border border-sand/20">
+                        <h4 class="text-moon-200 font-sans font-semibold uppercase tracking-wider text-sm mb-2">Address</h4>
+                        <p class="text-xl font-serif">Chaussée d'Alsemberg 358<br>1190 Forest, Brussels</p>
+                    </div>
+                    <div class="bg-sand/10 p-6 rounded-2xl border border-sand/20">
+                        <h4 class="text-moon-200 font-sans font-semibold uppercase tracking-wider text-sm mb-2">Hours</h4>
+                        <p class="text-xl font-serif">Tue — Sun : 9h00 — 15h00<br><span class="text-sand/50 text-base">Closed on Mondays</span></p>
+                    </div>
+                    <div class="bg-sand/10 p-6 rounded-2xl border border-sand/20">
+                        <h4 class="text-moon-200 font-sans font-semibold uppercase tracking-wider text-sm mb-2">Follow us</h4>
+                        <p class="text-xl font-serif">@mokamoonbxl</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20 pt-8 border-t border-sand/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sand/40 text-sm">&copy; 2026 Moka Moon. All rights reserved.</p>
+                <p class="text-sand/40 text-sm">Your neighbourhood café — Forest, Brussels</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-3');
+                nav.classList.remove('py-5');
+            } else {
+                nav.classList.add('py-5');
+                nav.classList.remove('py-3');
+            }
+        });
+        
+        // Reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
